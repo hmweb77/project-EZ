@@ -3,6 +3,7 @@ import Brick from "./brick.js";
 import Player from "./player.js";
 import Ball from "./ball.js";
 import Level from "./level.js";
+import './mobile.js'; 
 
 const score = document.getElementById("score");
 score.innerText = "0";
