@@ -1,128 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge" /> -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /> -->
-  <!-- <link href="https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&display=swap" rel="stylesheet" /> -->
-  <link rel="stylesheet" href="./css/index.css" />
-  <link rel="stylesheet" href="./css/loading.css" />
-  <link rel="stylesheet" href="./css/levels.css">
+    <meta charset="UTF-8">
+    <title>EZ Project</title>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Germania+One">
+    <link rel="stylesheet" href="style.css">
 
-  <title>DOM Brick Breaker</title>
 </head>
-
 <body>
-
-  <div class="loading">
-    <div class="container-loading">
-      <div class="logo">
-        <div class="logo-text">
-          <div class="main-logo">
-            <h1>EZTeam</h1>
-          </div>
-          <div class="sub-logo">
-            <h3><span style="color: rgb(167, 28, 241)">EZ</span> GAME</h3>
-          </div>
-        </div>
-        <progress id="progress" max="100" value="10"></progress>
-      </div>
+    <!-- <div class="sound">
+        <img src="img/SOUND_ON.png" alt="" id="sound">
+    </div> -->
+    
+    <div id="gameover">
+        <img src="img/youwon.png" alt="" id="youwon">
+        <img src="img/gameover.png" alt="" id="youlose">
+        <div id="restart">Play Again!</div>
     </div>
-  </div>
-
-  <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-
-  <div class="overlay">
-    <div class="bottom">
-      <div>
-        <span>Score: </span>
-        <span id="score"></span>
-      </div>
-      <div>
-        <span>Level: </span>
-        <span id="level"></span>
-      </div>
-      <div>
-        <span>Life: </span>
-        <span id="life"></span>
-      </div>
-    </div>
-  </div>
-  <canvas id="canvas"></canvas>
-
-  <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-
-  <main class="home-screen">
-    <div class="board">
-      <img id="gameName" height="450" width="450" src="./assets/title.png"></img>
-      <div class="ball"></div>
-      <input type="text" name="name" id="yourName" disabled="true">
-
-      <div class='container'>
-        <div class='playBut'>
-
-          <!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In  -->
-          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-            xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" width="103.7px" height="103.7px"
-            viewBox="0 0 213.7 213.7" enable-background="new 0 0 213.7 213.7" xml:space="preserve">
-
-            <polygon class='triangle' id="XMLID_18_" fill="none" stroke-width="15" stroke-linecap="round"
-              stroke-linejoin="round" stroke-miterlimit="10" points="
-          73.5,62.5 148.5,105.8 73.5,149.1 " />
-
-            <circle class='circle' id="XMLID_17_" fill="none" stroke-width="14" stroke-linecap="round"
-              stroke-linejoin="round" stroke-miterlimit="10" cx="106.8" cy="106.8" r="100.3" />
-          </svg>
-
-        </div>
-      </div>
-      <!-- <label for="yourName">enter your name</label> -->
-      <!-- <label for="name">enter your name</label> -->
-    </div>
-  </main>
-
-  <div class="container-level">
-    <!-- <img src="./assets/sound.png" alt="sound" id="sound"> -->
-    <!-- <img src="./assets/mute.png" alt="mute" id="mute"> -->
-
-    <div class="levels">
-      <img src="./assets/1.png" class="playable" alt="one" id="one">
-      <img src="./assets/2.png" class="playable" alt="two" id="two">
-      <!-- <img src="./assets/lock.png" alt="lock" id="lock"> -->
-      <img src="./assets/3.png" class="playable" alt="three" id="three">
-      <img src="./assets/4.png" class="playable" alt="four" id="four">
-      <img src="./assets/5.png" class="playable" alt="five" id="five">
-      <span class="img-wrapper tooltip">
-        <img src="./assets/6.png" alt="six" id="six">
-        <img src="./assets/lock.png" alt="lock"  id="lock">
-        <p class="tooltiptext">Coming Soon</p>
-        <div class="wrapper-overlay"></div>
-      </span>
-    </div>
-    <div class="arrows">
-      <img src="./assets/left.png" alt="left" id="left">
-      <img src="./assets/right.png" alt="right" id="right">
-    </div>
-  </div>
-
-  <img alt="sound" id="sound" class="volume">
-
-   <!--
-    Corona by Alexander Nakarada | https://www.serpentsoundstudios.com
-    Music promoted by https://www.chosic.com/
-    Attribution 4.0 International (CC BY 4.0)
-    https://creativecommons.org/licenses/by/4.0/
-  -->
-  <audio src="./assets/sounds/bg-sound.mp3" autoplay loop id="bg-sound"></audio>
-
-  <script
-  type="text/javascript"
-  src="https://code.jquery.com/jquery-1.7.1.min.js"
-></script>;
-  <script type="module" src="./scripts/index.js"></script>
+   
+    <canvas id="breakout" width="400" height="500"></canvas>
+    
+    <script src="components.js"></script>
+    <script src="game.js"></script>
 </body>
-
 </html>
