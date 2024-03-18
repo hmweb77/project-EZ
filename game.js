@@ -2,6 +2,20 @@
 const cvs = document.getElementById("breakout");
 const ctx = cvs.getContext("2d");
 
+// Responsive canvas size
+function resizeCanvas() {
+    cvs.width = window.innerWidth > 800 ? 400 : window.innerWidth - 20;
+    cvs.height = cvs.width * 1.25;
+    paddle.width = cvs.width / 5;
+    paddle.x = cvs.width / 2 - paddle.width / 2;
+    ball.x = cvs.width / 2;
+    ball.y = paddle.y - BALL_RADIUS;
+    createBricks();
+}
+
+window.addEventListener('resize', resizeCanvas, false);
+window.addEventListener('DOMContentLoaded', resizeCanvas, false);
+
 // ADD BORDER TO CANVAS
 cvs.style.border = "1px solid #0ff";
 
@@ -79,8 +93,15 @@ cvs.addEventListener("touchstart", function(event) {
 
 cvs.addEventListener("touchmove", function(event) {
     touchMoveX = event.touches[0].clientX;
+    let relativeX = touchX - cvs.getBoundingClientRect().left;
+   
+     // Ensure the paddle moves within the canvas bounds
+     if(relativeX > 0 && relativeX < cvs.width){
+        paddle.x = relativeX - paddle.width / 2;
+    }
+
     event.preventDefault(); // Prevent default touch behavior (e.g., scrolling)
-});
+},false);
 
 cvs.addEventListener("touchend", function(event) {
     const touchEndX = touchMoveX;
