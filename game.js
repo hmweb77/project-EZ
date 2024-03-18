@@ -65,6 +65,48 @@ function movePaddle(){
     }
 }
 
+// TOUCH CONTROLS FOR PADDLE MOVEMENT
+//const touchArea = document.getElementById("breakout"); // Replace "yourTouchArea" with the ID of the touch area in your HTML
+
+// Variables to track touch movement
+const touchStartX = 0;
+const touchMoveX = 0;
+
+// Add touch event listeners
+cvs.addEventListener("touchstart", function(event) {
+    touchStartX = event.touches[0].clientX;
+});
+
+cvs.addEventListener("touchmove", function(event) {
+    touchMoveX = event.touches[0].clientX;
+    event.preventDefault(); // Prevent default touch behavior (e.g., scrolling)
+});
+
+cvs.addEventListener("touchend", function(event) {
+    const touchEndX = touchMoveX;
+
+    // Calculate the difference between touch start and end positions
+    const touchDiff = touchEndX - touchStartX;
+
+    // Determine the direction of touch movement and move the paddle accordingly
+    if (touchDiff > 0 && paddle.x + paddle.width < cvs.width) {
+        // Move paddle to the right
+        paddle.x += paddle.dx;
+    } else if (touchDiff < 0 && paddle.x > 0) {
+        // Move paddle to the left
+        paddle.x -= paddle.dx;
+    }
+});
+
+// Additional functionality to handle touch cancel event
+cvs.addEventListener("touchcancel", function(event) {
+    // Reset touchStartX and touchMoveX if touch is canceled
+    touchStartX = 0;
+    touchMoveX = 0;
+});
+
+
+
 // CREATE THE BALL
 const ball = {
     x : cvs.width/2,
