@@ -85,6 +85,7 @@ function movePaddle(){
 // Variables to track touch movement
 let touchStartX = 0;
 let touchMoveX = 0;
+let lastTouchX = 0;
 
 // Add touch event listeners
 cvs.addEventListener("touchstart", function(event) {
@@ -94,12 +95,16 @@ cvs.addEventListener("touchstart", function(event) {
 cvs.addEventListener("touchmove", function(event) {
     touchMoveX = event.touches[0].clientX;
     let relativeX = touchX - cvs.getBoundingClientRect().left;
-   
+    // Calculate touch movement speed
+    let touchSpeed = touchX - lastTouchX;
+
      // Ensure the paddle moves within the canvas bounds
      if(relativeX > 0 && relativeX < cvs.width){
-        paddle.x = relativeX - paddle.width / 2;
+        paddle.x += touchSpeed;
+        // Clamp paddle position within canvas bounds
+        paddle.x = Math.max(Math.min(paddle.x, cvs.width - paddle.width), 0);
     }
-
+ lastTouchX = touchX; 
     event.preventDefault(); // Prevent default touch behavior (e.g., scrolling)
 },false);
 
@@ -127,7 +132,17 @@ cvs.addEventListener("touchend", function(event) {
 //   Reset touchStartX and touchMoveX if touch is canceled
 // });
 
-
+// Mouse Control for Paddle Movement
+cvs.addEventListener("mousemove", function(event) {
+    let relativeX = event.clientX - cvs.getBoundingClientRect().left;
+    
+    // Ensure paddle moves smoothly with mouse and stays within canvas bounds
+    if(relativeX > 0 && relativeX < cvs.width) {
+        paddle.x = relativeX - paddle.width / 2;
+        // Clamp paddle position within canvas bounds
+        paddle.x = Math.max(Math.min(paddle.x, cvs.width - paddle.width), 0);
+    }
+});
 
 // CREATE THE BALL
 const ball = {
