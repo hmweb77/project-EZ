@@ -2,6 +2,10 @@
 const cvs = document.getElementById("breakout");
 const ctx = cvs.getContext("2d");
 
+// Detect if the user is accessing the game from a mobile device
+function isMobileDevice() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
 // ADD BORDER TO CANVAS
 cvs.style.border = "1px solid #0ff";
 
@@ -41,6 +45,8 @@ function drawPaddle(){
 }
 
 // CONTROL THE PADDLE
+// CONTROL THE PADDLE (Desktop version)
+if (!isMobileDevice()) {
 document.addEventListener("keydown", function(event){
    if(event.keyCode == 37){
        leftArrow = true;
@@ -64,10 +70,12 @@ function movePaddle(){
         paddle.x -= paddle.dx;
     }
 }
-
+}
 // TOUCH CONTROLS FOR PADDLE MOVEMENT
 //const touchArea = document.getElementById("breakout"); // Replace "yourTouchArea" with the ID of the touch area in your HTML
 
+// TOUCH CONTROLS FOR PADDLE MOVEMENT (Mobile version)
+if (isMobileDevice()) {
 // Variables to track touch movement
 let touchStartX = 0;
 let touchMoveX = 0;
@@ -100,6 +108,7 @@ cvs.addEventListener("touchend", function(event) {
     touchStartX = 0;
     touchMoveX = 0;
 });
+}
 
 // Additional functionality to handle touch cancel event
 //  cvs.addEventListener("touchcancel", function(event) {
