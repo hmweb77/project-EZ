@@ -69,8 +69,8 @@ function movePaddle(){
 //const touchArea = document.getElementById("breakout"); // Replace "yourTouchArea" with the ID of the touch area in your HTML
 
 // Variables to track touch movement
-const touchStartX = 0;
-const touchMoveX = 0;
+let touchStartX = 0;
+let touchMoveX = 0;
 
 // Add touch event listeners
 cvs.addEventListener("touchstart", function(event) {
@@ -96,14 +96,15 @@ cvs.addEventListener("touchend", function(event) {
         // Move paddle to the left
         paddle.x -= paddle.dx;
     }
-});
 
-// Additional functionality to handle touch cancel event
-cvs.addEventListener("touchcancel", function(event) {
-    // Reset touchStartX and touchMoveX if touch is canceled
     touchStartX = 0;
     touchMoveX = 0;
 });
+
+// Additional functionality to handle touch cancel event
+//  cvs.addEventListener("touchcancel", function(event) {
+//   Reset touchStartX and touchMoveX if touch is canceled
+// });
 
 
 
